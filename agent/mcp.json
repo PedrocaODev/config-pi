@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "graphify": {
+      "command": "graphify-mcp",
+      "args": [],
+      "directTools": true
+    },
+    "obsidian-second-brain": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with",
+        "mcp<2",
+        "python",
+        "/home/pedrogoncalves/projects/obsidian-second-brain/integrations/obsidian-mcp-server/server.py"
+      ],
+      "env": {
+        "OBSIDIAN_VAULT_PATH": "/home/pedrogoncalves/pi-second-brain"
+      },
+      "directTools": true
+    },
+    "headroom": {
+      "command": "/home/pedrogoncalves/.local/bin/headroom",
+      "args": [
+        "mcp",
+        "serve"
+      ],
+      "directTools": true
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "protocolVersion": "auto",
+      "directTools": true
+    },
+    "ddg": {
+      "command": "python3",
+      "args": [
+        "/home/pedrogoncalves/.local/bin/ddg-search-mcp.py"
+      ],
+      "directTools": true
+    }
+  }
+}

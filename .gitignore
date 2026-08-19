@@ -1,0 +1,101 @@
+# Pi runtime, sessions, dependencies, clones, and generated state
+agent/sessions/
+# .pi/agent/sessions/
+agent/reflections/sessions/
+# .pi/agent/reflections/sessions/
+agent/npm/
+# .pi/agent/npm/
+agent/git/
+# .pi/agent/git/
+agent/bin/
+# .pi/agent/bin/
+gates/
+# .pi/gates/
+tasks/
+# .pi/tasks/
+web-search-cache/
+# .pi/web-search-cache/
+agent/auth.json
+agent/settings.json
+# local or symlinked settings
+agent/mcp-cache.json
+agent/mcp-npx-cache.json
+agent/models.json
+agent/models-store.json
+agent/models/
+agent/model-cache/
+agent/cache/
+agent/*.cache
+agent/*.db
+agent/*.sqlite*
+agent/*.lock
+
+# Machine-local symlinks
+agent/skills/ask-matt
+agent/skills/codebase-design
+agent/skills/code-review
+agent/skills/convert-documents-to-markdown
+agent/skills/diagnosing-bugs
+agent/skills/domain-modeling
+agent/skills/find-skills
+agent/skills/grilling
+agent/skills/grill-me
+agent/skills/grill-with-docs
+agent/skills/handoff
+agent/skills/implement
+agent/skills/improve-codebase-architecture
+agent/skills/loop-me
+agent/skills/prototype
+agent/skills/research
+agent/skills/resolving-merge-conflicts
+agent/skills/setup-matt-pocock-skills
+agent/skills/setup-pre-commit
+agent/skills/tdd
+agent/skills/teach
+agent/skills/to-questionnaire
+agent/skills/to-spec
+agent/skills/to-tickets
+agent/skills/triage
+agent/skills/wait-what
+agent/skills/wayfinder
+agent/skills/wizard
+agent/skills/writing-beats
+agent/skills/writing-for-agents
+agent/skills/writing-fragments
+agent/skills/writing-shape
+agent/themes/
+
+# Credentials and private configuration
+.env*
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.secret
+*.secrets
+*.token
+*.credentials
+
+# Dependencies, builds, coverage, and caches
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.cache-loader/
+.npm/
+.yarn/
+.pnpm-store/
+*.log
+logs/
+
+# Temporary and editor files
+.tmp/
+tmp/
+temp/
+.DS_Store
+*.swp
+*.swo
+*~
