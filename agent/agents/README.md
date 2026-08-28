@@ -1,7 +1,9 @@
-# Roster Gap Protocol
+# Roster and Delegation
 
-How to create a new subagent specialist when the built-in roster does not
-fit. The orchestrator proposes, the human approves, `/new-agent` scaffolds.
+`@tintinweb/pi-subagents` owns model subagents. `/agents` creates and manages
+agents; use the `Agent`, `get_subagent_result`, and `steer_subagent` tools for
+delegation and result handling. Configure models in each agent's frontmatter
+or in an `Agent` invocation.
 
 ## The roster
 
@@ -38,9 +40,9 @@ Every agent is a Markdown file with YAML frontmatter:
 ```markdown
 ---
 name: <agent-name>
-description: <when to delegate — the orchestrator sees this in the subagent tool>
+description: <when to delegate — the orchestrator sees this in the Agent tool>
 tools: <comma-separated tool allowlist>
-model: <provider/model-id, optional — falls back to the active roster preset, then the session model>
+model: <provider/model-id, optional — falls back to the Agent invocation or session model>
 ---
 <body: role, behavior, output contract, constraints>
 ```
@@ -56,24 +58,21 @@ model: <provider/model-id, optional — falls back to the active roster preset, 
 
 - **Global** (`~/.pi/agent/agents/`) — available in every project.
   "Scoped" global = constrained by frontmatter: tool-scoped or model-scoped.
-- **Project** (`.pi/agents/`, nearest project root) — repo-local; loads with
-  `agentScope: both` and a confirmation prompt for repo-controlled agents.
+- **Project** (`.pi/agents/` and `.agents/agents/`, nearest project root) —
+  repo-local; auto-discovered under Pi project trust.
 - **Override** — a project agent with the same name as a global agent
   replaces it for that project (tighter tools, project-specific prompt).
 - Name-prefix conventions (`fe-*`, `db-*`) are for discoverability only —
   enforcement is via tools/model frontmatter.
 
-## 4. Scaffolding
+## 4. Agent management
 
-`/new-agent` asks scope (global/project), class (read-only/write/gate),
-name, description, and model, then writes the Markdown from a template.
-Agents are re-discovered on the next invocation — no reload.
+`/agents` creates, edits, enables, disables, and manages agents. Agents are
+re-discovered on the next invocation — no reload.
 
-## 5. Governance (probation)
+## 5. Governance
 
 - New specialists start **project-local**; promote to global only after
   proving out in **2+ projects**.
-- The orchestrator proposes, the human approves, `/new-agent` scaffolds.
-- Presets (`~/.pi/agent/roster.json`, `/preset`) set per-agent models as a
-  budget decision — cheap models for mechanical lanes, expensive models for
-  judgment lanes.
+- Keep the roster, lane boundaries, and model choices explicit in agent
+  frontmatter or the `Agent` invocation.

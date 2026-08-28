@@ -19,7 +19,7 @@ adapt. It is **not** a turnkey install.
 ## What is here
 
 - **`agent/agents/`** — role definitions for the agent roster, including read-only exploration (`explorer`), research (`librarian`), judgment and review (`oracle`, `council`, `observer`), gates (`runner`, `integrator`), implementation (`fixer`), and UI work (`designer`).
-- **`agent/skills/`** — reusable skills and workflows, including the house-style OpenSpec workflow, issue handling, verification, Git, and project-specific integrations.
+- **`agent/skills/`** — reusable skills and workflows, including the house-style OpenSpec workflow, issue handling, verification, Git, and project-specific integrations. Installed globally at `~/.agents/skills/`, the sole global skill source shared by agent CLIs.
 - **`agent/prompts/`** — workflow prompt templates, including the `house-*`, review, PR, and Obsidian prompts.
 - **`agent/extensions/`** — Pi extensions. The tracked subagent extension provides isolated subagent contexts, streaming output, usage tracking, and project-agent trust controls. `extensions-parked/` contains extensions kept available but not active.
 - **`agent/mcp.json`** — MCP server configuration. This setup includes Graphify, Obsidian second brain, Headroom, Context7, and DDG integrations; local commands and paths are environment-specific.

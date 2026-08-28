@@ -43,11 +43,11 @@ Implement a house-style change that is already in apply-ready state.
       slice on a non-passing check.
 
 5. **Run review at checkpoints.**
-   At each review checkpoint defined in the plan, run the review loop via
-   `/fix-loop` (fixer implements → oracle reviews → iterate until no
-   blocking open findings). `/fix-loop` writes and updates `review.md` in
-   the change directory. If `/fix-loop` is unavailable, use the global
-   `/review` command or delegate a focused review to the `oracle` subagent.
+   At each review checkpoint defined in the plan, run `/review-fix` (fixer
+   implements → oracle reviews → iterate until no blocking open findings).
+   The loop writes and updates `review.md` in the change directory. If
+   `/review-fix` is unavailable, use the `oracle` Agent for a focused review
+   and have `fixer` address its findings.
    - Fix every actionable finding or explicitly disposition it.
    - Rerun review after fixes.
    - Do not advance until the review loop is clean — `review.md` verdict

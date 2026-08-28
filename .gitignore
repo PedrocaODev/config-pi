@@ -31,39 +31,6 @@ agent/*.sqlite*
 agent/*.lock
 
 # Machine-local symlinks
-agent/skills/ask-matt
-agent/skills/codebase-design
-agent/skills/code-review
-agent/skills/convert-documents-to-markdown
-agent/skills/diagnosing-bugs
-agent/skills/domain-modeling
-agent/skills/find-skills
-agent/skills/grilling
-agent/skills/grill-me
-agent/skills/grill-with-docs
-agent/skills/handoff
-agent/skills/implement
-agent/skills/improve-codebase-architecture
-agent/skills/loop-me
-agent/skills/prototype
-agent/skills/research
-agent/skills/resolving-merge-conflicts
-agent/skills/setup-matt-pocock-skills
-agent/skills/setup-pre-commit
-agent/skills/tdd
-agent/skills/teach
-agent/skills/to-questionnaire
-agent/skills/to-spec
-agent/skills/to-tickets
-agent/skills/triage
-agent/skills/wait-what
-agent/skills/wayfinder
-agent/skills/wizard
-agent/skills/writing-beats
-agent/skills/writing-for-agents
-agent/skills/writing-fragments
-agent/skills/writing-shape
-agent/themes/
 
 # Credentials and private configuration
 .env*

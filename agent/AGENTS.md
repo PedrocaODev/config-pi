@@ -26,7 +26,7 @@ These clauses apply to every session:
 
 ## Roster and delegation
 
-Delegate through the `subagent` tool (single / parallel / chain). The roster lives in `~/.pi/agent/agents/` (global) plus `.pi/agents/` (project, overrides global on name clash); per-agent models come from `roster.json` presets (`/preset`). See `~/.pi/agent/agents/README.md` for the roster-gap protocol (`/new-agent` scaffolds specialists).
+`@tintinweb/pi-subagents` is the sole owner of model subagents. Use its `Agent`, `get_subagent_result`, and `steer_subagent` tools, or the `/agents` management command. The roster lives in `~/.pi/agent/agents/` (global) plus `.pi/agents/` (project, overrides global on name clash); configure models in each agent's frontmatter or in the `Agent` invocation. See `~/.pi/agent/agents/README.md` for roster and lane guidance.
 
 | Agent | Lane | Tools |
 |---|---|---|
@@ -45,9 +45,9 @@ Delegate through the `subagent` tool (single / parallel / chain). The roster liv
 - **The orchestrator never writes or edits code.** Do not use `bash`/`sed`/`awk` to modify source files. Delegate all code writing and editing to `fixer` (or `designer` for UI).
 - **Route by lane.** One isolated, clear, low-risk action: do it directly (delegation costs more than execution). Multi-step implementation/discovery/research: delegate to the specialist lane. Never handle user-visible interface work directly — route to `designer`. A problem persisting after two fix attempts: escalate to `oracle`.
 - **Delegation contract:** every delegation names the validation owner and allowed scope. Pass complete context; do not make the specialist rediscover what you already know.
-- **Council = parallel, then synthesize.** Dispatch 2–3 parallel subagent invocations for independent opinions, then feed the raw outputs to `council` for the consensus report.
-- **Gates are deterministic.** `run_runner` returns `VERDICT: PASSED|FAILED|BLOCKED` and records evidence in `.pi/gates/` — only `PASSED` advances house-apply verification and house-archive. `gh pr merge`/force-push is blocked without a recorded `/approve-merge`. The review loop is `/fix-loop` — it writes `review.md` (schema v4) and `verify` requires a clean review.
-- **Review loop:** `/fix-loop <task-or-plan>` runs fixer → oracle → adjust → re-review (max 3 rounds) and writes `review.md`. `verify.md` cannot be generated while `review.md` is absent or not `PASSED` (schema-enforced).
+- **Council = parallel, then synthesize.** Launch independent `Agent` calls in one parallel tool batch, then synthesize their raw outputs with `council`.
+- **Gates are deterministic.** Ask the `runner` Agent to execute the repository's verification command and report `PASSED`, `FAILED`, or `BLOCKED`. Only `PASSED` advances house-apply verification and house-archive. Use the repository's `verify.md` and `review.md` as the durable verification and review records. The integrator may merge only after explicit user approval and must never force-push.
+- **Review loop:** use `/review-fix` for fixer → oracle → adjust → re-review (max 3 rounds), or launch the corresponding `fixer` and `oracle` Agents manually. Keep `review.md` clean and `verify.md` available before advancing.
 
 ## Skills and MCPs
 

@@ -4,13 +4,13 @@
     "first": {
       "explorer": "omni/cx/gpt-5.6-luna-low",
       "librarian": "omni/cx/gpt-5.6-luna-low",
-      "oracle": "omni/cx/gpt-5.6-luna-max",
-      "council": "omni/cx/gpt-5.6-sol-max",
+      "oracle": "omni/cx/gpt-5.6-sol-medium",
+      "council": "omni/cx/gpt-5.6-sol-high",
       "observer": "omni/cx/gpt-5.6-luna-low",
       "runner": "omni/cx/gpt-5.6-luna-low",
       "integrator": "omni/cx/gpt-5.6-luna-medium",
       "fixer": "omni/cx/gpt-5.6-luna-max",
-      "designer": "omni/cx/gpt-5.6-luna-low"
+      "designer": "omni/cx/gpt-5.6-sol-medium"
     },
     "second": {
       "explorer": "omni/opencode-go/mimo-v2.5-pro",

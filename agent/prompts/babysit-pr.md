@@ -10,6 +10,5 @@ when it is unambiguous; otherwise ask a focused question before proceeding.
 
 Follow the skill's workflow to watch CI, route failures through the `runner`,
 `fixer`, `oracle`, and `integrator` subagents, and only merge when the user
-explicitly requested merge-on-green or automerge. The `integrator` merge
-gate applies: merging requires a recorded user approval (see
-`/approve-merge`); never merge without it.
+explicitly requested merge-on-green or automerge. Merge only with explicit
+user approval; never merge without it.
