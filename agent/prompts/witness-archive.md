@@ -1,10 +1,10 @@
 ---
-description: Archive a completed house-style change, commit, and sync with origin.
+description: Archive a completed witness change, commit, and sync with origin.
 ---
 
-# house-archive
+# witness-archive
 
-Archive a completed house-style change after verification and retrospective
+Archive a completed witness change after verification and retrospective
 are in order, then commit and sync with origin.
 
 ## Prerequisites
@@ -17,7 +17,7 @@ are in order, then commit and sync with origin.
 ## Steps
 
 1. **Load the skill if available.**
-   Attempt to load `openspec-house-style`. If unavailable, proceed with the
+   Attempt to load `openspec-witness`. If unavailable, proceed with the
    embedded guidance below.
 
 2. **Check git preconditions.**

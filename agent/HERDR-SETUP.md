@@ -20,7 +20,7 @@ workspace: <project>        herdr --session <project>
 
 - Split panes from inside herdr (`Ctrl+b %` or the herdr keybindings);
   keep the orchestrator's pane the one you focus.
-- **War-room (Tier 3):** run `/house-apply` in the orchestrator pane and a
+- **War-room (Tier 3):** run `/witness-apply` in the orchestrator pane and a
   second pi session in another pane for unrelated work — herdr keeps both
   alive and shows when each settles.
 - Named sessions (`herdr --session <name>`) restore layouts per project;

@@ -18,6 +18,7 @@ web-search-cache/
 agent/auth.json
 agent/settings.json
 # local or symlinked settings
+agent/mcp.json
 agent/mcp-cache.json
 agent/mcp-npx-cache.json
 agent/models.json

@@ -1,14 +1,14 @@
 ---
-description: "House-style: propose a new change - create it and generate the full artifact chain (proposal → design → specs → tasks → plan)"
+description: "witness: propose a new change - create it and generate the full artifact chain (proposal → design → specs → tasks → plan)"
 ---
 
-# house-new
+# witness-new
 
-Propose a new change using the `house-style` OpenSpec schema — create the change and generate every planning artifact in one step.
+Propose a new change using the `witness` OpenSpec schema — create the change and generate every planning artifact in one step.
 
-**Planning boundary**: This workflow creates planning artifacts only. The user request that selected or triggered this workflow authorizes planning only, even if it asks to build or fix something. Do not edit project code. After the planning artifacts are complete, stop. Do not start implementation in the same response. Wait for a new user request; implementation starts with `/house-apply`.
+**Planning boundary**: This workflow creates planning artifacts only. The user request that selected or triggered this workflow authorizes planning only, even if it asks to build or fix something. Do not edit project code. After the planning artifacts are complete, stop. Do not start implementation in the same response. Wait for a new user request; implementation starts with `/witness-apply`.
 
-The house-style artifact chain, in dependency order:
+The witness artifact chain, in dependency order:
 - `proposal.md` (what & why)
 - `design.md` (context, decisions, trade-offs, risks)
 - `specs/<capability-path>/spec.md` (delta specs: ADDED / MODIFIED / REMOVED with Given/When/Then acceptance criteria)
@@ -17,7 +17,7 @@ The house-style artifact chain, in dependency order:
 
 `<capability-path>` is the spec directory relative to `specs/` (for example, `user-auth` or `identity/user-auth`). Preserve an existing capability's full path and follow the project's established organization for new capabilities.
 
-**Input**: The argument after `/house-new` is the change name (kebab-case), OR a description of what the user wants to build.
+**Input**: The argument after `/witness-new` is the change name (kebab-case), OR a description of what the user wants to build.
 **Provided arguments**: $@
 
 **Steps**
@@ -33,7 +33,7 @@ The house-style artifact chain, in dependency order:
 
 2. **Determine the workflow schema**
 
-   Use `house-style` (the active schema for this workflow) unless the user explicitly requests a different one — then pass `--schema <schema-name>`.
+   Use `witness` (the active schema for this workflow) unless the user explicitly requests a different one — then pass `--schema <schema-name>`.
 
 3. **Create the change directory**
    ```bash
@@ -45,7 +45,7 @@ The house-style artifact chain, in dependency order:
    openspec status --change "<name>" --json
    ```
    Parse the JSON to get:
-   - `applyRequires`: array of artifact IDs needed before implementation (house-style: `["plan"]`)
+   - `applyRequires`: array of artifact IDs needed before implementation (witness: `["plan"]`)
    - `artifacts`: list of all artifacts, each with its `status` and its `requires` edges (the artifact IDs it directly depends on)
    - `planningHome`, `changeRoot`, `artifactPaths`, and `actionContext`: path and scope context. Use these instead of assuming repo-local paths.
 
@@ -67,7 +67,7 @@ The house-style artifact chain, in dependency order:
 
    b. **Continue until every artifact in the required set exists** (not just `apply.requires`):
       - After creating each artifact, re-run `openspec status --change "<name>" --json`
-      - The required set is `applyRequires` plus every artifact reachable from those by following the `requires` edges — walk them transitively (house-style closes over proposal, design, specs, tasks, plan). Leave artifacts outside that set alone.
+      - The required set is `applyRequires` plus every artifact reachable from those by following the `requires` edges — walk them transitively (witness closes over proposal, design, specs, tasks, plan). Leave artifacts outside that set alone.
       - `status` is file-existence only, so an `applyRequires` artifact reading `done` does NOT mean its dependencies exist. Use each artifact's `requires` edges, not its `status`, to build the required set.
       - An artifact already reading `status: "skipped"` is satisfied (the change declares `skip_specs`); its files must NOT exist.
       - Skip an artifact only when `status` reports it `skipped`, or when its own `instruction` marks it optional. Dependencies are enablers, not gates: if a required artifact is still `blocked` only because you skipped a conditional dependency, write it anyway.
@@ -87,7 +87,7 @@ After completing all artifacts, summarize:
 - Change name and location
 - List of artifacts created with brief descriptions, plus any conditional artifact you skipped and why
 - What's ready: "All artifacts needed for implementation are ready."
-- Prompt: "The artifacts are ready for review. When you are ready, run `/house-apply`."
+- Prompt: "The artifacts are ready for review. When you are ready, run `/witness-apply`."
 
 **Artifact Creation Guidelines**
 
@@ -97,10 +97,10 @@ After completing all artifacts, summarize:
 - `context` and `rules` are constraints for YOU, not content for the file. Do NOT copy `<context>`, `<rules>`, `<project_context>` blocks into the artifact.
 
 **Guardrails**
-- The request that invoked this workflow authorizes planning only. Do NOT implement the change, start apply, or edit project code during this workflow. After presenting the artifacts, stop and wait for a new user request to start `/house-apply`.
+- The request that invoked this workflow authorizes planning only. Do NOT implement the change, start apply, or edit project code during this workflow. After presenting the artifacts, stop and wait for a new user request to start `/witness-apply`.
 - Create every artifact the apply phase transitively depends on, not just the ids listed in `apply.requires`.
 - Always read dependency artifacts before creating a new one — re-read from disk, not from conversation memory (files may have changed since you last saw them).
 - Ask about ambiguities that would materially change scope, externally observable behavior, compatibility, or acceptance criteria; for minor details, make reasonable assumptions and record them.
 - If a change with that name already exists, ask if the user wants to continue it or create a new one.
 - Verify each artifact file exists after writing before proceeding to next.
-- No `opsx-*` commands are used in this workflow. The next step after planning is always `/house-apply`.
+- No `opsx-*` commands are used in this workflow. The next step after planning is always `/witness-apply`.

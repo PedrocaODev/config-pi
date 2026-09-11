@@ -1,10 +1,10 @@
 ---
-description: Implement an apply-ready house-style change with test-first slices, review loops, and final verification.
+description: Implement an apply-ready witness change with test-first slices, review loops, and final verification.
 ---
 
-# house-apply
+# witness-apply
 
-Implement a house-style change that is already in apply-ready state.
+Implement a witness change that is already in apply-ready state.
 
 ## Prerequisites
 
@@ -16,13 +16,13 @@ Implement a house-style change that is already in apply-ready state.
 ## Steps
 
 1. **Load the skill if available.**
-   Attempt to load `openspec-house-style`. If unavailable, proceed with the
+   Attempt to load `openspec-witness`. If unavailable, proceed with the
    embedded guidance below.
 
 2. **Confirm apply-ready state.**
    Run `openspec status --change "<name>" --json` and verify all five planning
    artifacts exist (`proposal`, `design`, `specs`, `tasks`, `plan`). If any
-   are missing, stop and tell the user to run `/house-new` first.
+   are missing, stop and tell the user to run `/witness-new` first.
 
 3. **Read the plan.**
    Load `plan.md` and identify the ordered slices, review checkpoints,
@@ -69,7 +69,7 @@ Implement a house-style change that is already in apply-ready state.
    before archive.
 
 8. **Report result.**
-   Tell the user the change is ready for `/house-archive`.
+   Tell the user the change is ready for `/witness-archive`.
 
 ## Guardrails
 
@@ -82,7 +82,7 @@ Implement a house-style change that is already in apply-ready state.
 - A non-passing check never advances the workflow — fix and re-run.
 - Keep code changes minimal and scoped to each task.
 - If implementation reveals a design issue, pause and suggest updating the
-  planning artifacts (`/house-new` on the same change or `openspec update`),
+  planning artifacts (`/witness-new` on the same change or `openspec update`),
   do not silently deviate.
 - Read context files from disk (`openspec instructions apply --change "<name>" --json`
   → `contextFiles`), re-reading them even if seen earlier — the user may have
